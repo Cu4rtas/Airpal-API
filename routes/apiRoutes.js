@@ -1,22 +1,26 @@
-var express = require('express');
-var router = express.Router();
-var connection = require('../database/connection');
-var tables = require('../database/tables');
+const express = require('express');
+const router = express.Router();
+const connection = require('../database/connection');
+
+const tables =  require('../database/tables');
 
 
-/* GET users listing. */
+/**
+ * The response for this request is the render of the file index.html
+ * and the server will send a list with the tables that this are in @tables
+**/
 router.get('/', function(req, res, next) {
-  res.render('api-main', {lista: tables});
+  res.render('index', {lista: tables});
 });
 
 
 /**
-Ejecuta la función getter() del modelo Activity para obtener todos
+Ejecuta la función getAll() del modelo Activity para obtener todos
 los registros que hayan en la tabla de la db para enviarlos
 como JSON
 **/
-router.get('/activity', function(req, res, next) {
-  tables.Activity.src.getAll((err, data) => {
+router.get(tables.Activity.href, function(req, res, next) {
+  tables.Activity.getAll((err, data) => {
     if (err) {
       throw err;
     } else {
@@ -26,8 +30,8 @@ router.get('/activity', function(req, res, next) {
 });
 
 
-router.get('/alarmconf', function(req, res, next) {
-  tables.Alarmconf.src.getAll((err, data) => {
+router.get(tables.Alarmconf.href, function(req, res, next) {
+  tables.Alarmconf.getAll((err, data) => {
     if (err) {
       throw err;
     } else {
@@ -36,8 +40,8 @@ router.get('/alarmconf', function(req, res, next) {
   });
 });
 
-router.get('/alarms', function(req, res, next) {
-  tables.Alarms.src.getAll((err, data) => {
+router.get(tables.Alarms.href, function(req, res, next) {
+  tables.Alarms.getAll((err, data) => {
     if (err) {
       throw err;
     } else {
@@ -46,8 +50,8 @@ router.get('/alarms', function(req, res, next) {
   });
 });
 
-router.get('/detailHouse', function(req, res, next) {
-  tables.DetailHouse.src.getAll((err, data) => {
+router.get(tables.DetailHouse.href, function(req, res, next) {
+  tables.DetailHouse.getAll((err, data) => {
     if (err) {
       throw err;
     } else {
@@ -56,8 +60,8 @@ router.get('/detailHouse', function(req, res, next) {
   });
 });
 
-router.get('/display', function(req, res, next) {
-  tables.Display.src.getAll((err, data) => {
+router.get(tables.Display.href, function(req, res, next) {
+  tables.Display.getAll((err, data) => {
     if (err) {
       throw err;
     } else {
@@ -66,8 +70,8 @@ router.get('/display', function(req, res, next) {
   });
 });
 
-router.get('/house', function(req, res, next) {
-  tables.House.src.getAll((err, data) => {
+router.get(tables.House.href, function(req, res, next) {
+  tables.House.getAll((err, data) => {
     if (err) {
       throw err;
     } else {
@@ -76,8 +80,8 @@ router.get('/house', function(req, res, next) {
   });
 });
 
-router.get('/instalation', function(req, res, next) {
-  tables.Instalation.src.getAll((err, data) => {
+router.get(tables.Instalation.href, function(req, res, next) {
+  tables.Instalation.getAll((err, data) => {
     if (err) {
       throw err;
     } else {
@@ -86,8 +90,8 @@ router.get('/instalation', function(req, res, next) {
   });
 });
 
-router.get('/rt', function(req, res, next) {
-  tables.RT.src.getAll((err, data) => {
+router.get(tables.RT.href, function(req, res, next) {
+  tables.RT.getAll((err, data) => {
     if (err) {
       throw err;
     } else {
@@ -96,8 +100,8 @@ router.get('/rt', function(req, res, next) {
   });
 });
 
-router.get('/variables', function(req, res, next) {
-  tables.Variables.src.getAll((err, data) => {
+router.get(tables.Variables.href, function(req, res, next) {
+  tables.Variables.getAll((err, data) => {
     if (err) {
       throw err;
     } else {

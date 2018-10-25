@@ -2,15 +2,6 @@ doctype html
 mixin listnav(text, href)
   li
     a(href=href).h5.text-light.align-right.font-weight-bold=text
-
-
--
-  var nav_content = [{text: 'Inicio', href: '/index'}, 
-                    {text: 'Usuarios', href: '/all-users'},
-                    {text: 'Estadísticas', href: '/stats'},
-                    {text: 'Cerrar sesión', href: '/logout'},
-                    {text: 'API', href: '/api'}];
-
 html
   head
     title= title
@@ -20,8 +11,7 @@ html
     link(rel='stylesheet', href='/stylesheets/template.css')
   body
     ul.navbar-default.nav.fixed-top.navbar#nav-bar
-      each item in nav_content
-        +listnav(item.text, item.href)
-      image(src="/images/logo.png").brand-image
+      a(href="/api")
+        image(src="/images/logo.png").brand-image
     br
     block content

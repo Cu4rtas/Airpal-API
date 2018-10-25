@@ -1,0 +1,15 @@
+Santiago de un futuro
+Como sé que tu mente es un asco, y si no te pones a estudiar electrónica pa' ya
+te tiras el examen de mañana, te voy a dejar estas tareas pa' la próxima que
+cojas este proyecto:
+1) Cree los POJOS con las tablas que Manuela te diga que son las que van a
+trabar como tal las aplicaciones
+2) Con esos POJOS, haga los respectivos métodos POST del api para insertar datos
+en sus respectivas tablas
+3) Si de aquí a eso los del móvil ya te han pedido algo en específico, desarrollá
+esa regla de negocio en las consultas
+4) El router del api tiene mucho machete que tarde o temprano podría volverse
+tediosa de ver, creá las rutas que salen de /api para los POJOS y sus respectivas
+funcionalidades dentro del api
+
+Y PONETE A ESTUDIAR.

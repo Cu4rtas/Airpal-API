@@ -1,23 +1,33 @@
-const instalation = {};
+const installation = {};
 const connection = require('../connection');
 
-//QUERIES
-const getQuery = 'SELECT * FROM INSTALATION';
+//Nombre de la tabla en la base de datos
+installation.name = "INSTALLATION";
 
-instalation.getAll = (callback) => {
-      if (connection){
-        connection.query(getQuery, (err, rows) => {
-          //Callback for query
-          if(err) {
-            throw err;
-          } else {
-            callback(null, rows);
-          }
-        });
-      }
-    }
+//Ruta usada en el API para hacer consultas a esta tabla en la base de datos
+installation.href = "/" + installation.name.toLowerCase();
+
+//Queries
+installation.queries = {
+  getAll: "SELECT * FROM " + installation.name
+}
 
 /**
-Ejecuta el query querySelectActivities en la base de datos predefinida con .createConnection()
+Ejecuta el query getAll definido en installation.queries en la base de datos, el cuál nos retornará todos
+los datos de la tabla installation.name
+Luego ejecuta el callback que se le pasa en @param callback con la respuesta que la consulta le dio
 **/
-module.exports = instalation;
+installation.getAll = (callback) => {
+    if (connection){
+      connection.query(installation.queries.getAll, (err, rows) => {
+        //Callback for query
+        if(err) {
+          throw err;
+        } else {
+          callback(null, rows);
+        }
+      });
+    }
+  }
+
+module.exports = installation;

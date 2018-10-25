@@ -1,6 +1,10 @@
+/**
+  * Database configuration
+  * Used in connection.js to create a connection with this db
+**/
 module.exports = {
-  host: 'sql10.freemysqlhosting.net',
-  user: 'sql10260464',
-  password: 'Cay56FYt88',
-  database: 'sql10260464'
+  host: '35.198.8.0',
+  user: 'root',
+  password: 'Medell1n',
+  database: 'Envigado'
 }

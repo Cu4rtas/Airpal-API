@@ -1,9 +1,8 @@
 extends layout
-
 block content
-  h1= title
-  p Welcome to #{nombre}
-  p Acá podría poner información bien estilera
-  p Una que otra alerta, mostrar promedios actuales y esas vueltas
-  p Pero para todo eso debería primero obtener los datos de una base de datos
-  h1 ¡Y NO TENEMOS UNA!
+  p API REST del sistema integrado airpal para ser consumida por los diferentes dispositivos de este
+  ul
+    each item in lista
+      li
+        a(href='/api' + item.href)=item.name
+    

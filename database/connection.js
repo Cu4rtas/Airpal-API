@@ -1,8 +1,12 @@
-const connection = require('mysql').createConnection({
-  host: 'sql10.freemysqlhosting.net',
-  user: 'sql10260464',
-  password: 'Cay56FYt88',
-  database: 'sql10260464'
+//Require a config JSON with the database config
+const config = require('../config/dbconf');
+
+//Require 'mysql' lib and call its createConnection function
+const connection = require('mysql').createConnection(config, (err) => {
+  if(err){
+    throw err;
+  }
+  console.log("Connected!");
 });
 
 module.exports = connection;
