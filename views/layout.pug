@@ -1,0 +1,16 @@
+doctype html
+mixin listnav(text, href)
+  li
+    a(href=href).h5.text-light.align-right.font-weight-bold=text
+html
+  head
+    title= title
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/template.css')
+  body
+    ul.navbar-default.nav.fixed-top.navbar#nav-bar
+      image(src="/images/logo.png").brand-image
+    br
+    block content
