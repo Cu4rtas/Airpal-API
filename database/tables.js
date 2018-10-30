@@ -21,5 +21,7 @@ module.exports = {
 
   Alarms: require('./models/Alarms'),
 
-  Instalation: require('./models/Instalation')
+  Instalation: require('./models/Instalation'),
+
+  Admin: require('./models/Admin')
 }

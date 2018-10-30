@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const session = require('express-session');
 const bodyParser = require('body-parser');
-const apiRouter = require('./routes/apiRoutes');
+const routes = require('./routes/routes')
 const app = express();
 
 // view engine setup
@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 
 
 //Página principal del api, allí estará ubicada toda la documentación respectiva
-app.use('/api', apiRouter);
+app.use('/api', routes.apiRouter);
 
 
 
