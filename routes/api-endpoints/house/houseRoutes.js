@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const tables =  require('../../../database/tables');
+const pojo = require('../../../POJOS/pjhouse');
 
 router.get("/", function(req, res, next) {
     tables.House.getAll((err, data) => {
@@ -11,8 +12,6 @@ router.get("/", function(req, res, next) {
         }
     });
 });
-
-const pojo = require('../../../POJOS/pjhouse');
 
 router.post("/register", (req, res) => {
     pojo.ID = "0";

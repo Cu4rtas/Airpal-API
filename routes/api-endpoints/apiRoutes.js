@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const houseRouter = require('./house/houseRoutes');
 const adminRouter = require('./admin/adminRoutes');
+const queriesRouter = require('./queries/queriesRoutes');
 const tables =  require('../../database/tables');
 
 
@@ -29,13 +30,9 @@ router.get(tables.Activity.href, function(req, res, next) {
   });
 });
 
-/**
- Ejecuta la función getAll() del modelo Admin para obtener todos
- los registros que hayan en la tabla de la db para enviarlos
- como JSON
- **/
 router.use(tables.Admin.href, adminRouter);
 
+router.use('/queries', queriesRouter);
 
 router.get(tables.Alarmconf.href, function(req, res, next) {
   tables.Alarmconf.getAll((err, data) => {

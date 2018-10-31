@@ -1,0 +1,33 @@
+const express = require('express');
+const router = express.Router();
+const connection  = require('../../../database/connection');
+const tables =  require('../../../database/tables');
+
+/**
+ * Queries relativos a las consultas fundamentales que necesita la aplicación
+ * @type {{getVarsByHouseId: (function(*): string)}}
+ */
+const queries = {
+    /**
+     * getVarsByHouseId es una función que retorna un String con el query
+     * @param id
+     * @returns {string}
+     */
+    getVarsByHouseId : function (id) {
+        return 'SELECT * FROM INSTALLATION INNER JOIN VARIABLES ON INSTALLATION.DISPLAY = VARIABLES.DISPLAY WHERE HOUSECODE = ' + id;
+    }
+};
+
+router.get('/house-stats', (req, res) => {
+    if(connection){
+        connection.query(queries.getVarsByHouseId(req.query.idhouse), (err, rows) => {
+            if(err) {
+                throw err;
+            } else {
+                res.json(rows);
+            }
+        })
+    }
+});
+
+module.exports = router;

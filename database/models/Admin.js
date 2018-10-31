@@ -39,4 +39,12 @@ admin.get = (id, password, callback) => {
     }
 };
 
+admin.insert = (pojo, callback) =>{
+    if(connection) {
+        connection.insert('ADMIN', pojo, (err, res) => {
+            if (err) throw err;
+            callback(res);
+        });
+    }
+};
 module.exports = admin;
