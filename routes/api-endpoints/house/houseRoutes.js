@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const tables =  require('../../../database/tables');
-const pojo = require('../../../POJOS/pjhouse');
+const pojoHouse = require('../../../POJOS/pjhouse');
+const pojoInstallation = require('../../../POJOS/pjinstallation');
 
 router.get("/", function(req, res, next) {
     tables.House.getAll((err, data) => {
@@ -14,27 +15,37 @@ router.get("/", function(req, res, next) {
 });
 
 router.post("/register", (req, res) => {
-    pojo.ID = "0";
-    pojo.NAME = req.body.name;
-    pojo.LASTNAME = req.body.lastname;
-    pojo.EMAIL = req.body.email;
-    pojo.TELNUMBER = req.body.phone;
-    pojo.ADDRESS = req.body.address;
-    pojo.RESIDENTNUMBER = req.body.residentnumber;
-    pojo.FLOORNUMBER = req.body.floornumber;
-    pojo.REVOKEHOUSE = req.body.revokehouse;
-    pojo.SMOKERSNUMBER = req.body.smokersnumber;
-    pojo.PETSNUMBER = req.body.petsnumber;
-    pojo.FLOORMATERIAL = req.body.floormaterial;
-    pojo.WALLSMATERIAL = req.body.wallsmaterial;
-    pojo.PAINTTYPE = req.body.painttype;
-    pojo.ALTITUDE = req.body.altitude;
-    pojo.LATITUDE = req.body.latitude;
+    pojoHouse.ID = "0";
+    pojoHouse.NAME = req.body.name;
+    pojoHouse.LASTNAME = req.body.lastname;
+    pojoHouse.EMAIL = req.body.email;
+    pojoHouse.TELNUMBER = req.body.phone;
+    pojoHouse.ADDRESS = req.body.address;
+    pojoHouse.RESIDENTNUMBER = req.body.residentnumber;
+    pojoHouse.FLOORNUMBER = req.body.floornumber;
+    pojoHouse.REVOKEHOUSE = req.body.revokehouse;
+    pojoHouse.SMOKERSNUMBER = req.body.smokersnumber;
+    pojoHouse.PETSNUMBER = req.body.petsnumber;
+    pojoHouse.FLOORMATERIAL = req.body.floormaterial;
+    pojoHouse.WALLSMATERIAL = req.body.wallsmaterial;
+    pojoHouse.PAINTTYPE = req.body.painttype;
+    pojoHouse.ALTITUDE = req.body.altitude;
+    pojoHouse.LATITUDE = req.body.latitude;
+    pojoInstallation.DISPLAY = req.body.display;
+    pojoInstallation.HOUSECODE = req.body.housecode;
+    pojoInstallation.INSTALLDATE = req.body.installdate;
+    pojoInstallation.INSTALLER = req.body.installer;
     console.log(req.body);
-    console.log(pojo);
-    tables.House.insert((result)=> {
-        res.send(result);
-     }, pojo);
+    console.log(pojoHouse);
+    tables.House.insert((resHouse)=> {
+        if(resultHouse){
+            tables.Instalation.insert(pojoInstallation, (resInst) => {
+                if(resInst){
+                    res.send("Register complete" + resHouse + resInst);
+                }
+            });
+        }
+     }, pojoHouse);
 });
 
 module.exports = router;
