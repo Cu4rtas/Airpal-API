@@ -32,11 +32,13 @@ installation.getAll = (callback) => {
 
 installation.insert = (pojo, callback) => {
   if(connection){
-    connection.insert(pojo, (err, res) => {
+    connection.insert('INSTALLATION', pojo, (err, res) => {
       if(err){
         throw err;
       } else {
-        callback(res);
+        console.log("OLA");
+          console.log(callback);
+
       }
     });
   }

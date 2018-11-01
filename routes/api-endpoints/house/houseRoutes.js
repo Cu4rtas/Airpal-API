@@ -32,14 +32,15 @@ router.post("/register", (req, res) => {
     pojoHouse.ALTITUDE = req.body.altitude;
     pojoHouse.LATITUDE = req.body.latitude;
     pojoInstallation.DISPLAY = req.body.display;
-    pojoInstallation.HOUSECODE = req.body.housecode;
-    pojoInstallation.INSTALLDATE = req.body.installdate;
+    pojoInstallation.INSTALLDATE = req.body.date;
     pojoInstallation.INSTALLER = req.body.installer;
     console.log(req.body);
     console.log(pojoHouse);
     tables.House.insert((resHouse)=> {
-        if(resultHouse){
-            tables.Instalation.insert(pojoInstallation, (resInst) => {
+        if(resHouse){
+            console.log(resHouse);
+            pojoInstallation.HOUSECODE = resHouse.insertId;
+            tables.Installation.insert(pojoInstallation, (resInst) => {
                 if(resInst){
                     res.send("Register complete" + resHouse + resInst);
                 }

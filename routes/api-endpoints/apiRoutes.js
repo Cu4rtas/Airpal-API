@@ -76,8 +76,8 @@ router.get(tables.Display.href, function(req, res, next) {
 
 router.use(tables.House.href, houseRouter);
 
-router.get(tables.Instalation.href, function(req, res, next) {
-  tables.Instalation.getAll((err, data) => {
+router.get(tables.Installation.href, function(req, res, next) {
+  tables.Installation.getAll((err, data) => {
     if (err) {
       throw err;
     } else {
