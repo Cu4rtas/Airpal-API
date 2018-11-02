@@ -36,11 +36,10 @@ installation.insert = (pojo, callback) => {
       if(err){
         throw err;
       } else {
-        console.log("OLA");
-          console.log(callback);
-
+        callback(res);
       }
     });
   }
-}
+};
+
 module.exports = installation;

@@ -1,16 +1,97 @@
 doctype html
-mixin listnav(text, href)
-  li
-    a(href=href).h5.text-light.align-right.font-weight-bold=text
-html
-  head
-    title= title
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel='stylesheet', href='/stylesheets/template.css')
-  body
-    ul.navbar-default.nav.fixed-top.navbar#nav-bar
-      image(src="/images/logo.png").brand-image
+head
+    meta(http-equiv='Content-Type' content='text/html; charset=UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1.0')
+    title Starter Template - Materialize
+    // CSS
+    link(href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet')
+    link(href='css/materialize.css' type='text/css' rel='stylesheet' media='screen,projection')
+    link(href='css/style.css' type='text/css' rel='stylesheet' media='screen,projection')
+nav.light-blue.lighten-1(role='navigation')
+    .nav-wrapper.container
+        a#logo-container.brand-logo(href='/index')
+            img(src='/images/logo.png' height=70)
+        ul.right.hide-on-med-and-down
+            block navOptions
+        ul#nav-mobile.sidenav
+            li
+                a(href='#') Navbar Link
+        a.sidenav-trigger(href='#' data-target='nav-mobile')
+            i.material-icons menu
+#index-banner.section.no-pad-bot
+    .container
+        br
+        br
+        h1.header.center.orange-text Starter Template
+        block camilo
+        .row.center
+            h5.header.col.s12.light A modern responsive front-end framework based on Material Design
+        .row.center
+            a#download-button.btn-large.waves-effect.waves-light.orange(href='http://materializecss.com/getting-started.html') Get Started
+        br
+        br
+.container
+    .section
+        // Icon Section
+        .row
+            .col.s12.m4
+                .icon-block
+                    h2.center.light-blue-text
+                        i.material-icons flash_on
+                    h5.center Speeds up development
+                    p.light
+                        | We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.
+            .col.s12.m4
+                .icon-block
+                    h2.center.light-blue-text
+                        i.material-icons group
+                    h5.center User Experience Focused
+                    p.light
+                        | By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.
+            .col.s12.m4
+                .icon-block
+                    h2.center.light-blue-text
+                        i.material-icons settings
+                    h5.center Easy to work with
+                    p.light
+                        | We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.
     br
-    block content
+    br
+footer.page-footer.orange
+    .container
+        .row
+            .col.l6.s12
+                h5.white-text Company Bio
+                p.grey-text.text-lighten-4
+                    | We are a team of college students working on this project like it&apos;s our full time job. Any amount would help support and continue development on this project and is greatly appreciated.
+            .col.l3.s12
+                h5.white-text Settings
+                ul
+                    li
+                        a.white-text(href='#!') Link 1
+                    li
+                        a.white-text(href='#!') Link 2
+                    li
+                        a.white-text(href='#!') Link 3
+                    li
+                        a.white-text(href='#!') Link 4
+            .col.l3.s12
+                h5.white-text Connect
+                ul
+                    li
+                        a.white-text(href='#!') Link 1
+                    li
+                        a.white-text(href='#!') Link 2
+                    li
+                        a.white-text(href='#!') Link 3
+                    li
+                        a.white-text(href='#!') Link 4
+    .footer-copyright
+        .container
+            | Made by
+            a.orange-text.text-lighten-3(href='http://materializecss.com') Materialize
+// Scripts
+script(src='https://code.jquery.com/jquery-2.1.1.min.js')
+script(src='js/materialize.js')
+script(src='js/init.js')
+block content

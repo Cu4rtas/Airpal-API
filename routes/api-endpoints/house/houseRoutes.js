@@ -14,6 +14,7 @@ router.get("/", function(req, res, next) {
     });
 });
 
+
 router.post("/register", (req, res) => {
     pojoHouse.ID = "0";
     pojoHouse.NAME = req.body.name;
@@ -32,7 +33,7 @@ router.post("/register", (req, res) => {
     pojoHouse.ALTITUDE = req.body.altitude;
     pojoHouse.LATITUDE = req.body.latitude;
     pojoInstallation.DISPLAY = req.body.display;
-    pojoInstallation.INSTALLDATE = req.body.date;
+    pojoInstallation.INSTALLDATE = req.body.installdate;
     pojoInstallation.INSTALLER = req.body.installer;
     console.log(req.body);
     console.log(pojoHouse);
@@ -40,6 +41,7 @@ router.post("/register", (req, res) => {
         if(resHouse){
             console.log(resHouse);
             pojoInstallation.HOUSECODE = resHouse.insertId;
+            console.log(pojoInstallation);
             tables.Installation.insert(pojoInstallation, (resInst) => {
                 if(resInst){
                     res.send("Register complete" + resHouse + resInst);

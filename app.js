@@ -18,11 +18,23 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
-
+app.use(session({
+    secret: 'randomseed',
+    resave: true,
+    saveUninitialized: true
+}));
 
 //Página principal del api, allí estará ubicada toda la documentación respectiva
 app.use('/api', routes.apiRouter);
+app.get('/', (req, res) => {
+  req.session.cuenta;
+  res.redirect('/index');
+});
 
+app.use('/index', routes.indexRouter);
+app.use('/config', routes.configRouter);
+app.use('/house', routes.houseRouter);
+app.use('/logout', routes.indexRouter);
 
 
 // catch 404 and forward to error handler

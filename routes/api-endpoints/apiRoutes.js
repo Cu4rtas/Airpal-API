@@ -4,14 +4,14 @@ const houseRouter = require('./house/houseRoutes');
 const adminRouter = require('./admin/adminRoutes');
 const queriesRouter = require('./queries/queriesRoutes');
 const tables =  require('../../database/tables');
-
+const navOptions = require('../navOptions');
 
 /**
  * The response for this request is the render of the file index.html
  * and the server will send a list with the tables that this are in @tables
 **/
 router.get('/', function(req, res, next) {
-  res.render('index', {lista: tables});
+  res.render('index', {navOptions: navOptions, lista: tables});
 });
 
 

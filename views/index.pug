@@ -1,8 +1,9 @@
 extends layout
-block content
-  p 'Oa, acá voy a poner la documentación del api, pero cuando hice esto estaba muy cansadito jeje
-  ul
-    each item in lista
+
+block navOptions
+  ul.right.hide-on-med-and-downions
+    each item in navOptions
       li
-        a(href='/api' + item.href)=item.name
-    
+        a(href=item.href)=item.name
+
+
