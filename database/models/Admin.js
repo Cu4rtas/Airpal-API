@@ -33,8 +33,7 @@ admin.get = (id, password, callback) => {
     if(connection) {
         let query = admin.queries.getAll + " WHERE ID=\'" + id + "\' AND PASSWORD=\'" + password + '\'';
         connection.query(query, (err, rows) => {
-            if(err) throw err;
-            callback(rows);
+            callback(err, rows);
         });
     }
 };

@@ -4,19 +4,32 @@ const tables =  require('../../../database/tables');
 const pojoHouse = require('../../../POJOS/pjhouse');
 const pojoInstallation = require('../../../POJOS/pjinstallation');
 
-router.get("/", function(req, res, next) {
-    tables.House.getAll((err, data) => {
-        if (err) {
-            throw err;
-        } else {
-            res.json(data);
-        }
+router.get("/", (req, res) => {
+    tables.House.getAll(rows => {
+        res.json(rows);
     });
 });
 
+router.get('/display', (req, res) => {
+    tables.House.getHouseDisplay(req, rows => {
+        res.json(rows);
+    });
+});
+
+router.get('/variables', (req, res) => {
+    tables.House.getHouseVariables(req.query.houseid, (rows) => {
+        res.json(rows);
+    });
+});
+
+router.get('/RT', (req, res) => {
+    console.log(req);
+    tables.House.getHouseRT(req.query.houseid, (rows) => {
+        res.json(rows[0]);
+    });
+});
 
 router.post("/register", (req, res) => {
-    pojoHouse.ID = "0";
     pojoHouse.NAME = req.body.name;
     pojoHouse.LASTNAME = req.body.lastname;
     pojoHouse.EMAIL = req.body.email;
@@ -32,23 +45,23 @@ router.post("/register", (req, res) => {
     pojoHouse.PAINTTYPE = req.body.painttype;
     pojoHouse.ALTITUDE = req.body.altitude;
     pojoHouse.LATITUDE = req.body.latitude;
-    pojoInstallation.DISPLAY = req.body.display;
-    pojoInstallation.INSTALLDATE = req.body.installdate;
+    pojoInstallation.INSTALLDATE = new Date().toLocaleDateString();
     pojoInstallation.INSTALLER = req.body.installer;
     console.log(req.body);
     console.log(pojoHouse);
-    tables.House.insert((resHouse)=> {
+    tables.House.insert(pojoHouse, (resHouse)=> {
         if(resHouse){
             console.log(resHouse);
             pojoInstallation.HOUSECODE = resHouse.insertId;
             console.log(pojoInstallation);
             tables.Installation.insert(pojoInstallation, (resInst) => {
                 if(resInst){
-                    res.send("Register complete" + resHouse + resInst);
+                    //SEND THE DISPLAY CODE TO THE CLIENT
+                    res.send('Registro exitoso. Número del dispositivo: ' + resInst.insertId);
                 }
             });
         }
-     }, pojoHouse);
+     });
 });
 
 module.exports = router;

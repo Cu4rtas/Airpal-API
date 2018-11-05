@@ -11,7 +11,75 @@ house.href = "/" + house.name.toLowerCase();
 
 //Queries
 house.queries = {
-  getAll: "SELECT * FROM " + house.name
+    getAll: "SELECT * FROM " + house.name,
+
+    /**
+     * Query that will get the code of a display where a condition
+     */
+    getDisplayWhere: 'SELECT DISPLAY FROM HOUSE INNER JOIN INSTALLATION ON HOUSE.ID = INSTALLATION.HOUSECODE WHERE CONDITION',
+
+    /**
+     * Query that will get the code of a display by knowing its house id
+     */
+    getDisplayHouseId: (houseId) => {
+        return house.queries.getDisplayWhere.replace('CONDITION', 'ID=' + houseId);
+    },
+
+    /**
+     * Query that will get the code of a display by knowing its house email
+     */
+    getDisplayHouseEmail: (houseEmail) => {
+        let queryEmail = house.queries.getDisplayWhere.replace('CONDITION', 'EMAIL=@');
+        queryEmail = queryEmail.replace('@', '\'' + houseEmail + '\'');
+        return queryEmail;
+    },
+
+    /**
+     * THIS QUERY WILL GET ALL THE INSTALLATION INFO OF ALL THE HOUSES
+     */
+    getAllInstallations: "SELECT * FROM HOUSE INNER JOIN INSTALLATION",
+
+    /**
+     * Query that will get the variables measured in a house by knowing its id
+     * @param houseid
+     * @returns {string}
+     */
+    getHouseVariables: (houseid) => {
+        var tables = require('../tables');
+        let query = "SELECT INSTALLATION.HOUSECODE, INSTALLATION.INSTALLER, VARIABLES.*\n" +
+        "FROM HOUSE \n" +
+        "INNER JOIN INSTALLATION\n" +
+        "ON INSTALLATION.HOUSECODE = HOUSE.ID\n" +
+        "INNER JOIN VARIABLES\n" +
+        "ON INSTALLATION.DISPLAY = VARIABLES.DISPLAY\n" +
+        "WHERE HOUSECODE = @";
+        query = query.replace(/INSTALLATION/g, tables.Installation.name)
+            .replace(/HOUSE/g, tables.House.name)
+            .replace(/VARIABLES/g, tables.Variables.name)
+            .replace('@', houseid);
+        return query;
+    },
+
+    /**
+     * Query that will get the daily RT of a house by knowing its id
+     * @param houseid
+     * @returns {string}
+     */
+    getHouseRT: (houseid) => {
+            var tables = require('../tables');
+            let query = "SELECT INSTALLATION.HOUSECODE, INSTALLATION.INSTALLER, RT.*\n" +
+                "FROM HOUSE \n" +
+                "INNER JOIN INSTALLATION\n" +
+                "ON INSTALLATION.HOUSECODE = HOUSE.ID\n" +
+                "INNER JOIN RT\n" +
+                "ON INSTALLATION.DISPLAY = RT.DISPLAY\n" +
+                "WHERE HOUSECODE = @";
+            query = query.replace(/INSTALLATION/g, tables.Installation.name)
+                .replace(/HOUSE/g, tables.House.name)
+                .replace(/RT/g, tables.RT.name)
+                .replace('@', houseid);
+            return query;
+    }
 };
 
 /**
@@ -19,41 +87,89 @@ Ejecuta el query getAll definido en house.queries en la base de datos, el cuál 
 los datos de la tabla house.name
 Luego ejecuta el callback que se le pasa en @param callback con la respuesta que la consulta le dio
 **/
-house.getAll = (callback) => {
+house.getAll = callback => {
     if (connection){
       connection.query(house.queries.getAll, (err, rows) => {
         //Callback for query
-        if(err) {
-          throw err;
-        } else {
-          callback(null, rows);
-        }
+        if(err) throw err;
+        callback(rows);
       });
     }
   };
 
-house.getColumns = () => {
-    q = "SHOW COLUMNS FROM HOUSE";
-    strCols = "";
-    connection.query(q, (err, rows) => {
-        if (err) {
-            throw err;
-        } else {
-            for (row in rows) {
-              strCols += rows[row].Field + ", ";
-            }
-            strCols += "\b\b";
+
+/**
+ * Returns the code of the display of a house by knowing the house's id or the house email
+ * @param req
+ * @param res
+ */
+house.getHouseDisplay = (req, callback) => {
+    if(connection) {
+        let query = 'SELECT DISPLAY FROM HOUSE INNER JOIN INSTALLATION ON HOUSE.ID = INSTALLATION.HOUSECODE WHERE ID = \'54\'';
+        if (req.query.houseid) {
+            query = house.queries.getDisplayHouseId(req.query.houseid);
+        } else if (req.query.houseemail) {
+            query = house.queries.getDisplayHouseEmail(req.query.houseemail);
         }
-    });
-    return strCols;
+        connection.query(query, (err, rows) => {
+            if(err) throw err;
+            callback(rows);
+        });
+    }
 };
 
+/**
+ * Get the variables measured in a house by knowing its id
+ * @param houseid
+ * @param callback
+ */
+house.getHouseVariables = (houseid, callback) => {
+    if(connection) {
+        let query = house.queries.getHouseVariables(houseid);
+        connection.query(query, (err, rows) => {
+            if(err) throw err;
+            callback(rows);
+        });
+    }
+};
 
-house.insert = (callback, pojo) => {
-    connection.insert('HOUSE', pojo, (err, res) => {
-        if(err) throw err;
-        callback(res);
-    });
+/**
+ * Get the variables measured in a house by knowing its id
+ * @param houseid
+ * @param callback
+ */
+house.getHouseRT = (houseid, callback) => {
+    if(connection) {
+        let query = house.queries.getHouseRT(houseid);
+        connection.query(query, (err, rows) => {
+            if(err) throw err;
+            callback(rows);
+        });
+    }
+};
+
+house.getAllInstallations = (callback) => {
+    if(connection) {
+        let query = house.queries.getAllInstallations;
+        connection.query(house.queries.getAllInstallations, (err, rows) => {
+            callback(err, rows);
+        })
+    }
+}
+
+/**
+ * Inserts a new house in the db
+ * Throws err if pojo.ID already exists in the table
+ * @param pojo for the house
+ * @param callback what you're gonna do with the data
+ */
+house.insert = (pojo, callback) => {
+    if(connection) {
+        connection.insert('HOUSE', pojo, (err, res) => {
+            if (err) throw err;
+            callback(res);
+        });
+    }
 };
 
 

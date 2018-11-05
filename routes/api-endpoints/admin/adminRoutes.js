@@ -18,7 +18,8 @@ router.post('/login', function(req, res, next){
     ID = req.body.id;
     PASSWORD = crypto.createHash('md5').update(req.body.password).digest("hex");
     console.log(req.body);
-    tables.Admin.get(ID, PASSWORD, (rows) => {
+    tables.Admin.get(ID, PASSWORD, (err, rows) => {
+        if(err) throw err;
         if(rows.length === 0){
             res.send("USER NOT FOUND");
         } else {

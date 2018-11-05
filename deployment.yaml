@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: airpal
+spec:
+  replicas: 7
+  template:
+    metadata:
+      labels:
+        name: airpal
+    spec:
+      containers:
+      - name: airpal
+        image: gcr.io/airpal-221404/airpal:1.1
+        ports:
+        - containerPort: 3002

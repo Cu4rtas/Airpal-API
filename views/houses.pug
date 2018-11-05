@@ -1,0 +1,24 @@
+extends index
+mixin data(house)
+    div(class="collapsible-header")
+        i(class="material-icons") place
+        p ID: #{house.ID}.
+        p Direccion: #{house.ADDRESS}.
+    div(class="collapsible-body")
+        span()
+            p Detalles de instalación
+            p Instalado por: #{house.INSTALLER}
+            p Fecha: #{house.INSTALLDATE}
+
+
+
+block content
+    script.
+        $(document).ready(function(){
+        $('.collapsible').collapsible();
+        });
+    ul(class="collapsible")
+            for house in houses
+                li
+                    +data(house)
+

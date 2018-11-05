@@ -1,6 +1,6 @@
 module.exports = {
     HOUSECODE: '',
-    DISPLAY: '',
+    DISPLAY: '0',
     INSTALLER: '',
     INSTALLDATE: ''
 };

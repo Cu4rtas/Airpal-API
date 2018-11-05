@@ -1,5 +1,5 @@
 module.exports = {
-    ID: '',
+    ID: '0',
     NAME: '',
     LASTNAME: '',
     EMAIL: '',

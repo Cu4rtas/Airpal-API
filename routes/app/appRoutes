@@ -1,0 +1,13 @@
+const express = require('express');
+const router = express.Router();
+const routers = require('./appRouters');
+const sessionsMiddleware = require('./sessionsMiddleware');
+
+//router.use('/*', sessionsMiddleware);
+router.use('/index', routers.indexRouter);
+router.use('/houses', routers.housesRouter);
+router.use('/config', routers.configRouter);
+router.get('/', (req, res) => {
+    res.redirect('/app/index');
+});
+module.exports = router;

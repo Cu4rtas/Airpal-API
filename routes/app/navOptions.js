@@ -1,15 +1,15 @@
 module.exports = {
     Home: {
         name: 'Home',
-        href: '/'
+        href: '/app'
     },
     Houses: {
         name: 'Houses',
-        href: '/house'
+        href: '/app/houses'
     },
     Config: {
         name: 'Config',
-        href: '/config'
+        href: '/app/config'
     },
     Api: {
         name: 'API',
@@ -17,6 +17,6 @@ module.exports = {
     },
     Logout: {
         name: 'Logout',
-        href: '/logout'
+        href: '/app/logout'
     }
 };

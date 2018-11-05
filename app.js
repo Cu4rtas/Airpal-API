@@ -5,8 +5,10 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const session = require('express-session');
 const bodyParser = require('body-parser');
-const routes = require('./routes/routes')
 const app = express();
+const apiRouter = require('./routes/api-endpoints/apiRoutes');
+const appRouter = require('./routes/app/appRoutes');
+const loginRouter = require('./routes/app/loginRoutes');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,22 +21,20 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(session({
-    secret: 'randomseed',
+    secret: '123214sdaqweq',
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: false
 }));
 
+
 //Página principal del api, allí estará ubicada toda la documentación respectiva
-app.use('/api', routes.apiRouter);
+app.use('/app', appRouter);
+app.use('/api', apiRouter);
+app.use('/login', loginRouter);
 app.get('/', (req, res) => {
-  req.session.cuenta;
-  res.redirect('/index');
+  res.redirect('/app');
 });
 
-app.use('/index', routes.indexRouter);
-app.use('/config', routes.configRouter);
-app.use('/house', routes.houseRouter);
-app.use('/logout', routes.indexRouter);
 
 
 // catch 404 and forward to error handler

@@ -1,0 +1,20 @@
+extends layout
+block content
+    if (msg)
+        div(class="input-field col s12 align-center red darken-2")
+            br
+            h6(class='#d32f2f  align-center white-text' style="text-align:center")=msg
+            br
+    form(id='formLogin' class='col s12', action='/login', method='POST')
+        div(class="input-field col s12")
+            input(id='id', type='text', name='id')
+            label(for='id') CEDULA
+        div(class="input-field col s12")
+            input(id='password', type='text', name='password')
+            label(for='password') CONTRASEÑA
+        div(class='center-align')
+            button(class="waves-effect waves-teal btn-flat #ffb74d orange lighten-2 center-align " form='formLogin' type="submit" name="action") Submit
+            br
+            h7(class='blue-text')
+                a(href='/login/help') ¿Olvidaste tus credenciales?
+

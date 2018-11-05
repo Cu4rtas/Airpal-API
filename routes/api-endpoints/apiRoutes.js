@@ -4,7 +4,7 @@ const houseRouter = require('./house/houseRoutes');
 const adminRouter = require('./admin/adminRoutes');
 const queriesRouter = require('./queries/queriesRoutes');
 const tables =  require('../../database/tables');
-const navOptions = require('../navOptions');
+const navOptions = require('../app/navOptions');
 
 /**
  * The response for this request is the render of the file index.html

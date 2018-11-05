@@ -9,7 +9,7 @@ module.exports = {
 
   Activity: require('./models/Activity'),
 
-  Display: require('./models/Display'),
+  Display: require('./models/DisplayStatus'),
 
   RT: require('./models/RT'),
 
@@ -22,6 +22,8 @@ module.exports = {
   Alarms: require('./models/Alarms'),
 
   Installation: require('./models/Installation'),
+
+  House: require('./models/House'),
 
   Admin: require('./models/Admin')
 }
