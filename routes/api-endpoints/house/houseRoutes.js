@@ -17,13 +17,14 @@ router.get('/display', (req, res) => {
 });
 
 router.get('/variables', (req, res) => {
-    tables.House.getHouseVariables(req.query.houseid, (rows) => {
+    tables.House.getHouseVariables(req.query.houseid, (err, rows) => {
+        if(err)throw err;
+        console.log(rows);
         res.json(rows);
     });
 });
 
 router.get('/RT', (req, res) => {
-    console.log(req);
     tables.House.getHouseRT(req.query.houseid, (rows) => {
         res.json(rows[0]);
     });

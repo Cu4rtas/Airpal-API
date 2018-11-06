@@ -3,15 +3,38 @@ const router = express.Router();
 const navOptions = require('./navOptions');
 const tables = require('../../database/tables');
 
+
 router.get('/', (req, res) => {
     tables.House.getAllInstallations((err, rows) => {
         if(err) throw err;
+        console.log(rows);
         res.render('houses', {
-           navOptions: navOptions,
-           houses: rows
+            navOptions: navOptions,
+            houses: rows
        })
     });
 });
 
+
+router.get('/:houseid', (req, res) => {
+    tables.House.get(req.params.houseid, (err, rows) => {
+       if(err) throw err;
+       res.render('houseinfo', {
+           navOptions: navOptions,
+           house: rows[0]
+       });
+    });
+});
+
+router.get('/:houseid/variables', (req, res) => {
+    tables.House.getHouseVariables(req.params.houseid, (err, rows) => {
+        if(err) throw err;
+        res.render('housevariables', {
+            navOptions: navOptions,
+            variables: rows,
+            houseid: req.params.houseid
+        });
+    });
+});
 
 module.exports = router;

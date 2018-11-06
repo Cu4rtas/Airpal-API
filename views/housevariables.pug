@@ -1,0 +1,44 @@
+extends index
+block scripts
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    script(src='/js/graph.js')
+    script.
+        $(document).ready(function () {
+            $('.tabs').tabs();
+        });
+    script.
+        $(document).ready(function () {
+            $('.data').each(function (index, element) {
+                graphFunction.concentration(element);
+                $(element).parent().removeClass('disabled');
+            });
+        });
+
+block content
+    -houseid = `${houseid}`
+    div(class='row')
+        div(class='col s12')
+            ul(id=houseid class='tabs tabs-fixed-width')
+                li(class='active tab col s3 disabled')
+                    a(href='#divConcentration' class='data' id='CONCENTRATION') CONCENTRACIÓN
+                li(class='tab col s3 disabled')
+                    a(href='#graphICA' class='data' id='ICA') ICA
+                li(class='tab col s3 disabled')
+                    a(href='#graphTemperature' class='data' id='TEMPERATURE') TEMPERATURE
+                li(class='active tab col s3 disabled')
+                    a(href='#graphHumidity' class='data' id='HUMIDITY') HUMIDITY
+                li(class='tab col s3 disabled')
+                    a(href='#graphPressure' class='data' id='PRESSURE') PRESSURE
+        div(id='divConcentration' class='col s12 center-align')
+            div(id='graphConcentration' class='svg-container' align='center')
+        div(id='divICA' class='col s12 center-align')
+            div(id='graphICA' class='svg-container' align='center')
+        div(id='divTemperature' class='col s12 center-align')
+            div(id='graphTemperature' class='svg-container' align='center')
+        div(id='divHumidity' class='col s12 center-align')
+           div(id="graphHumidity" class="svg-container" align='center')
+        div(id='divPressure' class='col s12 center-align')
+          div(id="graphPressure" class="svg-container" align='center')
+
+

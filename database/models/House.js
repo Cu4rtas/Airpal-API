@@ -14,6 +14,17 @@ house.queries = {
     getAll: "SELECT * FROM " + house.name,
 
     /**
+     * Query that will get all the data of a house by knowing its id
+     * @param houseid
+     * @returns {string}
+     */
+    get: houseid => {
+        query = "SELECT * FROM HOUSE WHERE ID=houseid";
+        query = query.replace(/HOUSE/, house.name).replace('houseid', houseid);
+        return query;
+    },
+
+    /**
      * Query that will get the code of a display where a condition
      */
     getDisplayWhere: 'SELECT DISPLAY FROM HOUSE INNER JOIN INSTALLATION ON HOUSE.ID = INSTALLATION.HOUSECODE WHERE CONDITION',
@@ -37,7 +48,7 @@ house.queries = {
     /**
      * THIS QUERY WILL GET ALL THE INSTALLATION INFO OF ALL THE HOUSES
      */
-    getAllInstallations: "SELECT * FROM HOUSE INNER JOIN INSTALLATION",
+    getAllInstallations: "SELECT * FROM HOUSE INNER JOIN INSTALLATION ON HOUSE.ID = INSTALLATION.HOUSECODE",
 
     /**
      * Query that will get the variables measured in a house by knowing its id
@@ -46,7 +57,7 @@ house.queries = {
      */
     getHouseVariables: (houseid) => {
         var tables = require('../tables');
-        let query = "SELECT INSTALLATION.HOUSECODE, INSTALLATION.INSTALLER, VARIABLES.*\n" +
+        let query = "SELECT HOUSE.NAME, HOUSE.LASTNAME, HOUSE.ADDRESS, INSTALLATION.HOUSECODE, VARIABLES.*\n" +
         "FROM HOUSE \n" +
         "INNER JOIN INSTALLATION\n" +
         "ON INSTALLATION.HOUSECODE = HOUSE.ID\n" +
@@ -127,8 +138,7 @@ house.getHouseVariables = (houseid, callback) => {
     if(connection) {
         let query = house.queries.getHouseVariables(houseid);
         connection.query(query, (err, rows) => {
-            if(err) throw err;
-            callback(rows);
+            callback(err, rows);
         });
     }
 };
@@ -172,5 +182,12 @@ house.insert = (pojo, callback) => {
     }
 };
 
+house.get = (houseid, callback) => {
+    if(connection){
+        connection.query(house.queries.get(houseid), (err, res) => {
+            callback(err, res);
+        })
+    }
+}
 
 module.exports = house;
