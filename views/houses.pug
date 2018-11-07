@@ -17,13 +17,8 @@ mixin data(house)
                 a(class="waves-effect waves-yellow btn-flat right-align" href=varPath) Variables
                 a(class="waves-effect waves-teal btn-flat right-align" href=infoPath) Info
 
-
-
 block content
-    script.
-        $(document).ready(function(){
-        $('.collapsible').collapsible();
-        });
+    script(src='/js/collapsible.js')
     ul(class="collapsible")
             for house in houses
                 li

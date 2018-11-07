@@ -12,20 +12,20 @@ graphFunction = {
 
 
     graph: (dataset) => {
-        var trace1 = {
+        let trace1 = {
             x: dataset.map(obj => obj.TIME),
             y: dataset.map(obj => obj.DATA),
             mode: 'lines+markers'
         };
-        var data = [ trace1 ];
+        let data = [ trace1 ];
 
-        var layout = {
+        let layout = {
             title: dataset.name,
             xaxis: {
-                title: Object.keys(dataset[0])[1]
+                title: dataset.name
             },
             yaxis: {
-                title: Object.keys(dataset[0])[0]
+                title: 'FECHA'
             }
         };
         Plotly.newPlot(dataset.div, data, layout);
@@ -34,10 +34,10 @@ graphFunction = {
         id = graphFunction.getParentWithHouseId(element);
         fetchstr = ('/api/house/variables?houseid=@').replace('@', id);
         fetch(fetchstr)
-            .then(function(response) {
+            .then((response) => {
                 return response.json();
             })
-            .then(function(myJson) {
+            .then((myJson) => {
                 let dataset = []
                 switch (element.id) {
                     case 'CONCENTRATION':
@@ -86,7 +86,7 @@ graphFunction = {
                                 dataset[index] = {DATA: val.PRESSURE, TIME: val.DATETIME};
                             }
                         );
-                        dataset.name = 'HUMEDAD';
+                        dataset.name = 'PRESIÓN';
                         dataset.div = 'graphPressure';
                         graphFunction.graph(dataset);
                         break;

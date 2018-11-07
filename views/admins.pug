@@ -1,0 +1,38 @@
+extends index
+mixin data(admin)
+    div(class="collapsible-header")
+        i(class="material-icons") person
+        p= `${admin.ID}: ${admin.LASTNAME}, ${admin.NAME}.`
+    div(class="collapsible-body" id=`${admin.ID}`)
+
+
+block scripts
+    script(src='/js/collapsible.js')
+    script.
+        $(document).ready(function() {
+            $('.collapsible-body').each(function(index, element) {
+                fetchstr = ('/api/admin/installations?adminid=@').replace('@', element.id);
+                fetch(fetchstr)
+                    .then(function (response) {
+                        return response.json();
+                    }).then(function (myJson) {
+                        if(myJson.length === 0) {
+                            $(`#${element.id}`).append(
+                                `<p>El usuario aún no ha registrado viviendas.</p>`
+                            );
+                        }
+                        myJson.forEach(function(val){
+                            $(`#${element.id}`).append(
+                                `<p> Registro de la casa: <a href="/app/houses/${val.HOUSECODE}">${val.HOUSECODE}.</a></p>`
+                            );
+                        });
+                    })
+              })});
+
+
+block content
+    ul(class="collapsible")
+        for admin in admins
+            li
+                +data(admin)
+

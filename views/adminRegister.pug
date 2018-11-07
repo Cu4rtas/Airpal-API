@@ -1,0 +1,26 @@
+extends layout
+block content
+    if (msg)
+        div(class="input-field col s12 align-center red darken-2")
+            br
+            h6(class='#d32f2f  align-center white-text' style="text-align:center")=msg
+            br
+    form(id='formAdminReg' class='col s12', action='/app/adminRegister', method='POST')
+        div(class="input-field col s12")
+            input(id='id', type='text', name='id')
+            label(for='id') CEDULA
+        div(class="input-field col s12")
+            input(id='name', type='text', name='name')
+            label(for='name') NOMRE
+        div(class="input-field col s12")
+            input(id='lastname', type='text', name='lastname')
+            label(for='lastname') APELLIDOS
+        div(class="input-field col s12")
+            input(id='password', type='text', name='password')
+            label(for='password') CONTRASEÑA
+        div(class="input-field col s12")
+            input(id='password2', type='text', name='password2')
+            label(for='password2') REPETIR CONTRASEÑA
+        div(class='center-align')
+            button(class="waves-effect waves-teal btn-flat #ffb74d orange lighten-2 center-align " form='formAdminReg' type="submit" name="action") Submit
+

@@ -7,6 +7,10 @@ module.exports = {
         name: 'Houses',
         href: '/app/houses'
     },
+    Admins: {
+        name: 'Admins',
+        href: '/app/admins'
+    },
     Config: {
         name: 'Config',
         href: '/app/config'

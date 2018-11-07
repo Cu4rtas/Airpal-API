@@ -20,11 +20,14 @@ router.post('/login', function(req, res, next){
     console.log(req.body);
     tables.Admin.get(ID, PASSWORD, (err, rows) => {
         if(err) throw err;
-        if(rows.length === 0){
-            res.send("USER NOT FOUND");
-        } else {
+        console.log(rows);
+        if(rows.length > 0){
+            console.log("USER FOUND");
             console.log(rows[0]);
             res.json(rows[0]);
+        } else {
+            console.log("USER NOT FOUND");
+            res.send("USER NOT FOUND");
         }
     });
 });
@@ -36,6 +39,14 @@ router.post('/register', function(req, res, next){
     pojo.PASSWORD = crypto.createHash('md5').update(req.body.password).digest("hex");
     tables.Admin.insert(pojo, (response) => {
         res.send(response);
+    });
+});
+
+
+router.get('/installations', (req, res) => {
+    tables.Admin.getAdminInstallations(req.query.adminid, (err, rows) => {
+       if(err) throw err;
+        res.send(rows);
     });
 });
 

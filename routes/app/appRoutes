@@ -13,6 +13,7 @@ router.use('/*', (req, res, next) => {
 router.use('/index', routers.indexRouter);
 router.use('/houses', routers.housesRouter);
 router.use('/config', routers.configRouter);
+router.use('/admins', routers.adminRouter);
 router.get('/', (req, res) => {
     res.redirect('/app/index');
 });
