@@ -10,7 +10,7 @@ installation.href = "/" + installation.name.toLowerCase();
 //Queries
 installation.queries = {
   getAll: "SELECT * FROM " + installation.name
-}
+};
 
 /**
 Ejecuta el query getAll definido en installation.queries en la base de datos, el cuál nos retornará todos
@@ -28,7 +28,7 @@ installation.getAll = (callback) => {
         }
       });
     }
-  }
+  };
 
 installation.insert = (pojo, callback) => {
   if(connection){

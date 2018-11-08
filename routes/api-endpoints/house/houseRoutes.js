@@ -57,8 +57,13 @@ router.post("/register", (req, res) => {
             console.log(pojoInstallation);
             tables.Installation.insert(pojoInstallation, (resInst) => {
                 if(resInst){
+                    let houseRes = pojoHouse;
+                    houseRes.DISPLAY = resInst.insertId;
+                    houseRes.INSTALLER = pojoInstallation.INSTALLER;
+
                     //SEND THE DISPLAY CODE TO THE CLIENT
-                    res.json({msg: 'Registro exitoso. Número del dispositivo: ' + resInst.insertId});
+                    console.log(houseRes);
+                    res.send(houseRes);
                 }
             });
         }
