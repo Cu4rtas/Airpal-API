@@ -1,6 +1,7 @@
 const admin = {};
 const connection = require('../connection');
 const tableNames = require('../tableNames');
+const crypto = require('crypto');
 
 //Nombre de la tabla en la base de datos
 admin.name = tableNames.admin;
@@ -37,10 +38,11 @@ admin.getAll = (callback) => {
 
 admin.get = (id, password, callback) => {
     if(connection) {
+        password = crypto.createHash('md5').update(password).digest("hex");
         let query = admin.queries.getAll + " WHERE ID=\'" + id + "\' AND PASSWORD=\'" + password + '\'';
         console.log(query);
         connection.query(query, (err, rows) => {
-            callback(err, rows);
+            callback(err, JSON.parse(JSON.stringify(rows)));
         });
     }
 };

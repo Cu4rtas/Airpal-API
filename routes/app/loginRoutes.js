@@ -8,14 +8,16 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     console.log(req.body);
-    tables.Admin.get(req.body.id, req.body.password, (err, rows) => {
+    tables.Admin.get(req.body.id, req.body.password, (err, result) => {
         if(err) throw err;
-        if(rows.length === 0){
-            res.render('login', {msg: 'User not found'});
-        } else {
-            console.log(rows[0]);
-            req.session.user_id = rows[0].ID;
+        let user = result[0];
+        console.log(user);
+        if(user) {
+            console.log('oa');
+            req.session.user_id = user.ID;
             res.redirect('/app');
+        } else {
+            res.render('login', {msg: "Usuario no encontrado"});
         }
     });
 });

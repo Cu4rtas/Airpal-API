@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const tables =  require('../../../database/tables');
-const crypto = require('crypto');
 const pojo = require('../../../POJOS/pjadmin');
 
 router.get("/", function(req, res, next) {
@@ -16,14 +15,12 @@ router.get("/", function(req, res, next) {
 
 router.post('/login', function(req, res, next){
     ID = req.body.id;
-    PASSWORD = crypto.createHash('md5').update(req.body.password).digest("hex");
+    PASSWORD = req.body.password;
     console.log(req.body);
     tables.Admin.get(ID, PASSWORD, (err, rows) => {
         if(err) throw err;
-        console.log(rows);
-        if(rows.length > 0){
+        if(rows){
             console.log("USER FOUND");
-            console.log(rows[0]);
             res.json(rows[0]);
         } else {
             console.log("USER NOT FOUND");

@@ -11,4 +11,5 @@ const connection = new MysqlJson(config);
   console.log("Connected!");
 });
 **/
+
 module.exports = connection;
