@@ -47,7 +47,7 @@ router.post("/register", (req, res) => {
             console.log(resHouse);
             installationInsert.HOUSECODE = resHouse.insertId;
             installationInsert.INSTALLER = req.body.INSTALLER;
-            installationInsert.INSTALLDATE = new Date().toLocaleDateString();
+            installationInsert.INSTALLDATE = new Date().toISOString().slice(0, 19).replace('T', ' ');
             console.log(installationInsert);
             tables.Installation.insert(installationInsert, (resInst) => {
                 if(resInst){
