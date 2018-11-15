@@ -25,42 +25,35 @@ router.get('/variables', (req, res) => {
 });
 
 router.get('/RT', (req, res) => {
+    console.log(req.query.houseid);
     tables.House.getHouseRT(req.query.houseid, (rows) => {
+        console.log(rows);
         res.json(rows[0]);
     });
 });
 
 router.post("/register", (req, res) => {
-    pojoHouse.NAME = req.body.name;
-    pojoHouse.LASTNAME = req.body.lastname;
-    pojoHouse.EMAIL = req.body.email;
-    pojoHouse.TELNUMBER = req.body.phone;
-    pojoHouse.ADDRESS = req.body.address;
-    pojoHouse.RESIDENTNUMBER = req.body.residentnumber;
-    pojoHouse.FLOORNUMBER = req.body.floornumber;
-    pojoHouse.REVOKEHOUSE = req.body.revokehouse;
-    pojoHouse.SMOKERSNUMBER = req.body.smokersnumber;
-    pojoHouse.PETSNUMBER = req.body.petsnumber;
-    pojoHouse.FLOORMATERIAL = req.body.floormaterial;
-    pojoHouse.WALLSMATERIAL = req.body.wallsmaterial;
-    pojoHouse.PAINTTYPE = req.body.painttype;
-    pojoHouse.ALTITUDE = req.body.altitude;
-    pojoHouse.LATITUDE = req.body.latitude;
-    pojoInstallation.INSTALLDATE = new Date().toLocaleDateString();
-    pojoInstallation.INSTALLER = req.body.installer;
-    console.log(req.body);
-    console.log(pojoHouse);
-    tables.House.insert(pojoHouse, (resHouse)=> {
+    let houseInsert = {},
+         installationInsert = {};
+    Object.keys(pojoHouse).forEach(key => {
+        houseInsert[key] = req.body[key];
+    });
+    houseInsert.ID = '0';
+    console.log(houseInsert);
+    tables.House.insert(houseInsert, (err, resHouse)=> {
+        console.log("INSERTÓ HP");
+        if(err) throw err;
         if(resHouse){
             console.log(resHouse);
-            pojoInstallation.HOUSECODE = resHouse.insertId;
-            console.log(pojoInstallation);
-            tables.Installation.insert(pojoInstallation, (resInst) => {
+            installationInsert.HOUSECODE = resHouse.insertId;
+            installationInsert.INSTALLER = req.body.INSTALLER;
+            installationInsert.INSTALLDATE = new Date().toLocaleDateString();
+            console.log(installationInsert);
+            tables.Installation.insert(installationInsert, (resInst) => {
                 if(resInst){
-                    let houseRes = pojoHouse;
+                    let houseRes = houseInsert;
                     houseRes.DISPLAY = resInst.insertId;
-                    houseRes.INSTALLER = pojoInstallation.INSTALLER;
-
+                    houseRes.INSTALLER = installationInsert.INSTALLER;
                     //SEND THE DISPLAY CODE TO THE CLIENT
                     console.log(houseRes);
                     res.send(houseRes);

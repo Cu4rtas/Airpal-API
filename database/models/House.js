@@ -152,6 +152,7 @@ house.getHouseRT = (houseid, callback) => {
     if(connection) {
         let query = house.queries.getHouseRT(houseid);
         connection.query(query, (err, rows) => {
+            console.log(query);
             if(err) throw err;
             callback(rows);
         });
@@ -176,8 +177,7 @@ house.getAllInstallations = (callback) => {
 house.insert = (pojo, callback) => {
     if(connection) {
         connection.insert('HOUSE', pojo, (err, res) => {
-            if (err) throw err;
-            callback(res);
+            callback(err, res);
         });
     }
 };
