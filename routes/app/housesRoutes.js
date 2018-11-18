@@ -19,10 +19,15 @@ router.get('/', (req, res) => {
 router.get('/:houseid', (req, res) => {
     tables.House.get(req.params.houseid, (err, rows) => {
        if(err) throw err;
-       res.render('houseinfo', {
-           navOptions: navOptions,
-           house: rows[0]
-       });
+       let houseinfo = rows[0];
+       tables.House.getDisplayStatus(req.params.houseid, (err, rows) => {
+           let displayStatus = rows[0];
+            res.render('houseinfo', {
+                navOptions: navOptions,
+                house: houseinfo,
+                displayStatus: displayStatus
+            });
+        });
     });
 });
 

@@ -14,5 +14,6 @@ module.exports = {
     WALLSMATERIAL: '',
     PAINTTYPE: '',
     LATITUDE: '',
-    ALTITUDE: ''
+    ALTITUDE: '',
+    LONGIDUTE: ''
 };

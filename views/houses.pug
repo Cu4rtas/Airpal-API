@@ -8,7 +8,7 @@ mixin data(house)
         p ID: #{house.ID}.
         p Direccion: #{house.ADDRESS}.
     div(class="collapsible-body")
-        span()
+        span
             p Detalles de instalación
             p Instalado por: #{house.INSTALLER}
             p Fecha: #{house.INSTALLDATE}
@@ -20,7 +20,7 @@ mixin data(house)
 block content
     script(src='/js/collapsible.js')
     ul(class="collapsible")
-            for house in houses
-                li
-                    +data(house)
+        for house in houses
+            li
+                +data(house)
 

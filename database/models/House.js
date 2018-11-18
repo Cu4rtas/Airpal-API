@@ -36,6 +36,26 @@ house.queries = {
         return house.queries.getDisplayWhere.replace('CONDITION', 'ID=' + houseId);
     },
 
+
+    /**
+     * Query that will get the status of the display of a particular house
+     * @param houseid
+     */
+    getDisplayStatus: houseid => {
+        let tables = require('../tables');
+        let query = "SELECT *\n" +
+                    "FROM DISPLAYSTATUS\n" +
+                    "WHERE ID IN (\n" +
+                    "SELECT HOUSECODE\n" +
+                    "FROM INSTALLATION\n" +
+                    "WHERE HOUSECODE = @)"
+                    .replace(/DISPLAYSTATUS/g, tables.Display.name)
+                    .replace(/INSTALLATION/g, tables.Installation.name)
+                    .replace('@', houseid);
+        return query;
+    },
+
+
     /**
      * Query that will get the code of a display by knowing its house email
      */
@@ -94,9 +114,8 @@ house.queries = {
 };
 
 /**
-Ejecuta el query getAll definido en house.queries en la base de datos, el cuál nos retornará todos
-los datos de la tabla house.name
-Luego ejecuta el callback que se le pasa en @param callback con la respuesta que la consulta le dio
+ * Will exec the query getAll defined at house.queries on the DB
+ * This query will return us all the houses, and after that it'll exec the callback at param @callback
 **/
 house.getAll = callback => {
     if (connection){
@@ -161,12 +180,11 @@ house.getHouseRT = (houseid, callback) => {
 
 house.getAllInstallations = (callback) => {
     if(connection) {
-        let query = house.queries.getAllInstallations;
         connection.query(house.queries.getAllInstallations, (err, rows) => {
             callback(err, rows);
         })
     }
-}
+};
 
 /**
  * Inserts a new house in the db
@@ -188,6 +206,15 @@ house.get = (houseid, callback) => {
             callback(err, res);
         })
     }
-}
+};
+
+
+house.getDisplayStatus = (houseid, callback) => {
+    if(connection){
+        connection.query(house.queries.getDisplayStatus(houseid), (err, rows) => {
+           callback(err, rows);
+        });
+    }
+};
 
 module.exports = house;

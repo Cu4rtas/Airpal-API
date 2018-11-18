@@ -5,7 +5,7 @@ const pojoHouse = require('../../../POJOS/pjhouse');
 const pojoInstallation = require('../../../POJOS/pjinstallation');
 
 router.get("/", (req, res) => {
-    tables.House.getAll(rows => {
+    tables.House.getAllInstallations(rows => {
         res.json(rows);
     });
 });
@@ -41,7 +41,6 @@ router.post("/register", (req, res) => {
     houseInsert.ID = '0';
     console.log(houseInsert);
     tables.House.insert(houseInsert, (err, resHouse)=> {
-        console.log("INSERTÓ HP");
         if(err) throw err;
         if(resHouse){
             console.log(resHouse);

@@ -1,20 +1,50 @@
 extends index
 
+block scripts
+    script(src="/js/tooltip.js")
+    <meta name="viewport" content="initial-scale=1.0">
+
+block styles
+    style.
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+        #map {
+            height: 20em;
+        }
+
+        div.row {
+            margin-bottom: 0px;
+        }
+
+
+mixin addInfo(key, val, cont)
+    div.row.lighten-4(class = (cont % 2 === 0 ? 'light-blue' : 'yellow'))
+        div.col.s6.left-align
+            p=`${key}:`
+        div.col.s6.right-align
+            p(id=key)=val
+
+
 block content
-    div
-        h6 ID: #{house.ID}
-        h6 NAME: #{house.NAME}
-        h6 LASTNAME: "Leon Jaramillo",
-        h6 EMAIL: "pablito11",
-        h6 TELNUMBER: "666",
-        h6 ADDRESS: "Last call buena",
-        h6 RESIDENTNUMBER: 8,
-        h6 FLOORNUMBER: 6,
-        h6 REVOKEHOUSE: "SI",
-        h6 SMOKERSNUMBER: 5,
-        h6 PETSNUMBER: 2,
-        h6 FLOORMATERIAL: "Loza",
-        h6 WALLSMATERIAL: "Granitpo",
-        h6 PAINTTYPE: "Otros",
-        h6 LATITUDE: "12",
-        h6 ALTITUDE: "12"
+    -var cont = 0
+    for val, index in house
+        +addInfo(index, val, cont)
+        -cont++;
+
+    div.row.light-blue.lighten-4
+        div.col.s6.left-align
+            p DISPLAY:
+        div.col.s6.right-align.md-1.img
+            p=displayStatus.ID
+
+
+    div.row.yellow.lighten-4
+        div.col.s12.m4.l8.left-align
+            p STATUS:
+        div.col.s4.offsete-s4.right-align.white-text(class=(displayStatus.STATUS === 'OK' ? 'light-green' : 'red'))
+            p.tooltipped.center(data-position="top" data-tooltip=`${displayStatus.LASTDATE}`)=displayStatus.STATUS
+
+    section#map
+
+    script(async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGsYTyBvpy_UOWl8VWJF27Yz8TD6iPWTU")
+    script(src='/js/maps.js')

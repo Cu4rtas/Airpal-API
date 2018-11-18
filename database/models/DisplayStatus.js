@@ -10,7 +10,7 @@ displayStatus.href = "/" + displayStatus.name.toLowerCase();
 //Queries
 displayStatus.queries = {
   getAll: "SELECT * FROM " + displayStatus.name
-}
+};
 
 /**
 Ejecuta el query getAll definido en displayStatus.queries en la base de datos, el cuál nos retornará todos
