@@ -5,8 +5,9 @@ const pojoHouse = require('../../../POJOS/pjhouse');
 const pojoInstallation = require('../../../POJOS/pjinstallation');
 
 router.get("/", (req, res) => {
-    tables.House.getAllInstallations(rows => {
+    tables.House.getAllInstallations((err, rows) => {
         res.json(rows);
+        console.log(rows);
     });
 });
 
