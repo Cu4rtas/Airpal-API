@@ -14,8 +14,8 @@ router.get("/", function(req, res, next) {
 });
 
 router.post('/login', function(req, res, next){
-    ID = req.body.id;
-    PASSWORD = req.body.password;
+    ID = req.body.ID;
+    PASSWORD = req.body.PASSWORD;
     console.log(req.body);
     tables.Admin.get(ID, PASSWORD, (err, rows) => {
         if(err) throw err;

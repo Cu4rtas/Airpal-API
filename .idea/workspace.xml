@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c75d402c-ed43-4d98-aa50-6e9a4a565f2e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/POJOS/pjhouse.js" beforeDir="false" afterPath="$PROJECT_DIR$/POJOS/pjhouse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/models/House.js" beforeDir="false" afterPath="$PROJECT_DIR$/database/models/House.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/maps.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/maps.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/app/housesRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/app/housesRoutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/houseinfo.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/houseinfo.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api-endpoints/admin/adminRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api-endpoints/admin/adminRoutes.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -48,7 +44,7 @@
           <entry key="appRoutes" value="11" />
           <entry key="css" value="4" />
           <entry key="gcloud" value="1" />
-          <entry key="js" value="258" />
+          <entry key="js" value="260" />
           <entry key="json" value="3" />
           <entry key="png" value="1" />
           <entry key="pug" value="86" />
@@ -67,7 +63,7 @@
           <entry key="Image" value="1" />
           <entry key="JSON" value="3" />
           <entry key="Jade" value="86" />
-          <entry key="JavaScript" value="279" />
+          <entry key="JavaScript" value="281" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="RNG Compact" value="1" />
           <entry key="TypeScript" value="1" />
@@ -80,11 +76,11 @@
           <entry key="Routes" value="272" />
           <entry key="adminActivity" value="16" />
           <entry key="appRoutes" value="453" />
-          <entry key="js" value="23148" />
+          <entry key="js" value="23159" />
           <entry key="pug" value="10881" />
           <entry key="queriesRoutes" value="2987" />
           <entry key="tooltip" value="1" />
-          <entry key="txt" value="200" />
+          <entry key="txt" value="257" />
           <entry key="yaml" value="503" />
         </counts>
       </usages-collector>
@@ -93,8 +89,8 @@
           <entry key="Dockerfile" value="166" />
           <entry key="HTML" value="3" />
           <entry key="Jade" value="10878" />
-          <entry key="JavaScript" value="26877" />
-          <entry key="PLAIN_TEXT" value="200" />
+          <entry key="JavaScript" value="26888" />
+          <entry key="PLAIN_TEXT" value="257" />
           <entry key="YAML" value="503" />
         </counts>
       </usages-collector>
@@ -104,7 +100,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/houseinfo.pug">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="214">
@@ -113,9 +109,22 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/routes/api-endpoints/admin/adminRoutes.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="17" column="32" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/tooltip.js">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/POJOS/pjadmin.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="16" lean-forward="true" selection-start-column="16" selection-end-column="16" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -159,15 +168,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-132">
               <caret line="42" column="56" selection-start-line="42" selection-start-column="56" selection-end-line="42" selection-end-column="56" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/app/appRoutes">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="4" selection-start-line="4" selection-end-line="4" />
             </state>
           </provider>
         </entry>
@@ -262,7 +262,6 @@
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/database/connection.js" />
         <option value="$PROJECT_DIR$/database/models/Admin.js" />
-        <option value="$PROJECT_DIR$/routes/api-endpoints/admin/adminRoutes.js" />
         <option value="$PROJECT_DIR$/routes/app/loginRoutes.js" />
         <option value="$PROJECT_DIR$/database/models/Installation.js" />
         <option value="$PROJECT_DIR$/views/houseUbication.pug" />
@@ -279,6 +278,7 @@
         <option value="$PROJECT_DIR$/database/models/House.js" />
         <option value="$PROJECT_DIR$/POJOS/pjhouse.js" />
         <option value="$PROJECT_DIR$/views/houseinfo.pug" />
+        <option value="$PROJECT_DIR$/routes/api-endpoints/admin/adminRoutes.js" />
       </list>
     </option>
   </component>
@@ -346,6 +346,13 @@
               <item name="Airpal-API" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
               <item name="api-endpoints" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Airpal-API" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Airpal-API" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
+              <item name="api-endpoints" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Airpal-API" type="b2602c69:ProjectViewProjectNode" />
@@ -435,7 +442,7 @@
       <workItem from="1542235755306" duration="7982000" />
       <workItem from="1542329479672" duration="4658000" />
       <workItem from="1542420619774" duration="12808000" />
-      <workItem from="1542562796359" duration="5707000" />
+      <workItem from="1542562796359" duration="6444000" />
     </task>
     <task id="LOCAL-00001" summary="Login&#10;Register&#10;Insert&#10;added">
       <created>1541022599887</created>
@@ -500,11 +507,18 @@
       <option name="project" value="LOCAL" />
       <updated>1542244000651</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Pug variable rows fixed at houseinfo&#10;Longitude fixed">
+      <created>1542569536455</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1542569536455</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="158928000" />
+    <option name="totallyTimeSpent" value="159665000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -551,16 +565,10 @@
     <MESSAGE value="Web" />
     <MESSAGE value="WEB:&#10;Houses menu&#10;Houses variables&#10;Houses info" />
     <MESSAGE value="Optimized" />
-    <option name="LAST_COMMIT_MESSAGE" value="Optimized" />
+    <MESSAGE value="Pug variable rows fixed at houseinfo&#10;Longitude fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pug variable rows fixed at houseinfo&#10;Longitude fixed" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/database/models/Activity.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="16" selection-start-column="16" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/api-endpoints/apiRoutes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -647,13 +655,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="129">
           <caret line="44" column="56" selection-start-line="44" selection-start-column="56" selection-end-line="44" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api-endpoints/admin/adminRoutes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="27" column="9" lean-forward="true" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -864,6 +865,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="214">
           <caret line="40" column="22" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/POJOS/pjadmin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="16" lean-forward="true" selection-start-column="16" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api-endpoints/admin/adminRoutes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="17" column="32" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
         </state>
       </provider>
     </entry>
