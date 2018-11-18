@@ -46,7 +46,7 @@ house.queries = {
         let query = "SELECT *\n" +
                     "FROM DISPLAYSTATUS\n" +
                     "WHERE ID IN (\n" +
-                    "SELECT HOUSECODE\n" +
+                    "SELECT DISPLAY\n" +
                     "FROM INSTALLATION\n" +
                     "WHERE HOUSECODE = @)"
                     .replace(/DISPLAYSTATUS/g, tables.Display.name)
@@ -211,6 +211,7 @@ house.get = (houseid, callback) => {
 
 house.getDisplayStatus = (houseid, callback) => {
     if(connection){
+        console.log(house.queries.getDisplayStatus(houseid));
         connection.query(house.queries.getDisplayStatus(houseid), (err, rows) => {
            callback(err, rows);
         });

@@ -1,0 +1,1 @@
+gcloud compute --project "airpal-221404" ssh --zone "us-east1-b" "airpal-evg"

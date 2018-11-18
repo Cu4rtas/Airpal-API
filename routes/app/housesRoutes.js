@@ -22,6 +22,7 @@ router.get('/:houseid', (req, res) => {
        let houseinfo = rows[0];
        tables.House.getDisplayStatus(req.params.houseid, (err, rows) => {
            let displayStatus = rows[0];
+           console.log(displayStatus);
             res.render('houseinfo', {
                 navOptions: navOptions,
                 house: houseinfo,

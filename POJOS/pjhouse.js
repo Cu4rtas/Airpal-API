@@ -15,5 +15,5 @@ module.exports = {
     PAINTTYPE: '',
     LATITUDE: '',
     ALTITUDE: '',
-    LONGIDUTE: ''
+    LONGITUDE: ''
 };
