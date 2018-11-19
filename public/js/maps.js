@@ -1,28 +1,13 @@
 const initMap = (destination) => {
-    //Get the location
-    if(navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(res => {
-            let location = {};
-            location.lat = res.coords.latitude;
-            location.lng = res.coords.longitude;
-            console.log(location.lng);
-            //Now we'll mark it
-            let map = new google.maps.Map(document.getElementById('map'), {
-                center: location,
-                zoom: 15
-            });
-            let yourMarker = new google.maps.Marker({
-               position: location,
-               title: "Your ubication"
-            });
-            let destinationMarker = new google.maps.Marker({
-               position: destination,
-               title: "House"
-            });
-            yourMarker.setMap(map);
-            destinationMarker.setMap(map);
-        });
-    }
+    let destinationMarker = new google.maps.Marker({
+       position: destination,
+       title: "House"
+    });
+    let map = new google.maps.Map(document.getElementById('map'), {
+        center: location,
+        zoom: 15
+    });
+    destinationMarker.setMap(map);
 };
 
 $(function(){
