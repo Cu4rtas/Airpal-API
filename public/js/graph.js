@@ -30,11 +30,12 @@ graphFunction = {
         };
         Plotly.newPlot(dataset.div, data, layout);
     },
-    concentration: (element) => {
+    concentration: (element, table) => {
         id = graphFunction.getParentWithHouseId(element);
-        fetchstr = ('/api/house/variables?houseid=@').replace('@', id);
+        fetchstr = ('/api/house/table?houseid=@').replace('@', id).replace("table", table);
         fetch(fetchstr)
             .then((response) => {
+                console.log(response);
                 return response.json();
             })
             .then((myJson) => {

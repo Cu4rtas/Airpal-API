@@ -37,6 +37,16 @@ router.get('/:houseid/variables', (req, res) => {
         if(err) throw err;
         res.render('housevariables', {
             navOptions: navOptions,
+            houseid: req.params.houseid
+        });
+    });
+});
+
+router.get('/:houseid/rt', (req, res) => {
+    tables.House.getHouseVariables(req.params.houseid, (err, rows) => {
+        if(err) throw err;
+        res.render('housert', {
+            navOptions: navOptions,
             variables: rows,
             houseid: req.params.houseid
         });

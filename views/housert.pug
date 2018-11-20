@@ -9,7 +9,7 @@ block scripts
     script.
         $(document).ready(function () {
             $('.data').each(function (index, element) {
-                graphFunction.concentration(element, "variables");
+                graphFunction.concentration(element, "rt");
                 $(element).parent().removeClass('disabled');
             });
         });
@@ -36,8 +36,8 @@ block content
         div(id='divTemperature' class='col s12 center-align')
             div(id='graphTemperature' class='svg-container' align='center')
         div(id='divHumidity' class='col s12 center-align')
-           div(id="graphHumidity" class="svg-container" align='center')
+            div(id="graphHumidity" class="svg-container" align='center')
         div(id='divPressure' class='col s12 center-align')
-          div(id="graphPressure" class="svg-container" align='center')
+            div(id="graphPressure" class="svg-container" align='center')
 
 

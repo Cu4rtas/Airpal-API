@@ -3,7 +3,7 @@ mixin data(house)
     -infoPath = `/app/houses/${house.ID}`
     -varPath = `/app/houses/${house.ID}/variables`
     -rtPath = `/app/houses/${house.ID}/rt`
-    div(class="collapsible-header")
+    div(class="collapsible-header" id=`${house.ID}`)
         i(class="material-icons") place
         p ID: #{house.ID}.
         p Direccion: #{house.ADDRESS}.
@@ -19,6 +19,8 @@ mixin data(house)
 
 block content
     script(src='/js/collapsible.js')
+    script(src='/js/filter.js')
+    input(id="txtFilter" onkeyup="filter()")
     ul(class="collapsible")
         for house in houses
             li
