@@ -12,38 +12,17 @@ $(document).ready(() => {
     });
 });
 
-function filterByID(str){
-    houses.forEach(house => {
-       if(!house.ID.toString().includes(str)){
-          $("#" + house.ID).hide();
-       } else {
-           $("#" + house.ID).show();
-       }
-    });
-}
-
-function filterByEmail(str){
-    houses.forEach(house => {
-        if(!house.EMAIL.toString().includes(str)){
-            $("#" + house.ID).hide();
-        } else {
-            $("#" + house.ID).show();
-        }
-    });
-}
-function filterByName(str){
-    houses.forEach(house => {
-        if(!house.NAME.toString().includes(str) || !house.LASTNAME.toString().includes(str)){
-            $("#" + house.ID).hide();
-        } else {
-            $("#" + house.ID).show();
-        }
-    });
-}
 
 function filter(){
-    let strFilter = $("#txtFilter").val();
-    filterByID(strFilter);
-    filterByEmail(strFilter);
-    filterByName(strFilter);
+    let str = $("#txtFilter").val().toLowerCase();
+    houses.forEach(house => {
+        $("#" + house.ID).hide();
+        if(house.NAME.toString().toLowerCase().includes(str) ||
+            house.LASTNAME.toString().toLowerCase().includes(str) ||
+            house.ID.toString().includes(str) ||
+            house.EMAIL.toString().toLowerCase().includes(str) ||
+            house.ADDRESS.toString().toLowerCase().includes(str)){
+            $("#" + house.ID).show();
+        }
+    });
 }
