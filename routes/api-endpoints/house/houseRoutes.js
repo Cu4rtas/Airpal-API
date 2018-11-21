@@ -33,6 +33,14 @@ router.get('/RT', (req, res) => {
     });
 });
 
+router.get('/rthist', (req, res) => {
+    console.log(req.query.houseid);
+    tables.House.getHouseRT(req.query.houseid, (rows) => {
+        console.log(rows);
+        res.json(rows);
+    });
+});
+
 router.post("/register", (req, res) => {
     let houseInsert = {},
          installationInsert = {};

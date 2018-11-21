@@ -22,10 +22,10 @@ graphFunction = {
         let layout = {
             title: dataset.name,
             xaxis: {
-                title: dataset.name
+                title: 'FECHA'
             },
             yaxis: {
-                title: 'FECHA'
+                title: dataset.name
             }
         };
         Plotly.newPlot(dataset.div, data, layout);
@@ -39,7 +39,8 @@ graphFunction = {
                 return response.json();
             })
             .then((myJson) => {
-                let dataset = []
+                let dataset = [];
+                console.log(myJson);
                 switch (element.id) {
                     case 'CONCENTRATION':
                         myJson.forEach(

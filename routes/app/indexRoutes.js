@@ -4,7 +4,8 @@ const navOptions = require('./navOptions');
 
 
 router.get('/', (req, res) => {
-    res.render('index', {navOptions: navOptions});
+    //res.render('index', {navOptions: navOptions});
+    res.redirect("/app/houses");
 });
 
 

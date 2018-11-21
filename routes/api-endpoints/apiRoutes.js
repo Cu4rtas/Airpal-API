@@ -11,7 +11,8 @@ const navOptions = require('../app/navOptions');
  * and the server will send a list with the tables that this are in @tables
 **/
 router.get('/', function(req, res, next) {
-  res.render('index', {navOptions: navOptions, lista: tables});
+  //res.render('index', {navOptions: navOptions, lista: tables});
+    res.redirect("/app");
 });
 
 
