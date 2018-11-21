@@ -5,4 +5,4 @@ module.exports = {
     housesRouter: require('./housesRoutes'),
     apiRouter : require('../api-endpoints/apiRoutes'),
     adminRouter: require('./adminRouter')
-};
+}
