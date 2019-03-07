@@ -16,6 +16,8 @@ const config = (req, res, next) => {
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
 }
+
+app.use(config);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
