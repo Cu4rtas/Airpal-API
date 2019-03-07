@@ -10,6 +10,12 @@ const apiRouter = require('./routes/api-endpoints/apiRoutes');
 const appRouter = require('./routes/app/appRoutes');
 const loginRouter = require('./routes/app/loginRoutes');
 
+const config = (req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+}
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
