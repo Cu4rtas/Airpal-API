@@ -27,7 +27,7 @@ router.get('/variables', (req, res) => {
 
 router.get('/:houseid/RT', (req, res) => {
     console.log(req.params.houseid);
-    tables.House.getHouseRT(req.params.houseid), (rows) => {
+    tables.House.getHouseRT(req.params.houseid, (rows) => {
         console.log(rows);
         res.json(rows[0]);
     });
