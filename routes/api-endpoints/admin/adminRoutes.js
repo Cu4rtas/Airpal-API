@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const tables =  require('../../../database/tables');
 const pojo = require('../../../POJOS/pjadmin');
+global.crypto = require('crypto')
 
 router.get("/", function(req, res, next) {
     tables.Admin.getAll((err, data) => {
