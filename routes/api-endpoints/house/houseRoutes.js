@@ -25,7 +25,7 @@ router.get('/variables', (req, res) => {
     });
 });
 
-router.get('//RT', (req, res) => {
+router.get('/RT', (req, res) => {
     console.log(req.query.houseid);
     tables.House.getHouseRT(req.query.houseid, (rows) => {
         console.log(rows);
