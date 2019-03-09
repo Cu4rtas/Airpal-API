@@ -17,25 +17,25 @@ router.get('/display', (req, res) => {
     });
 });
 
-router.get('/:houseid/variables', (req, res) => {
-    tables.House.getHouseVariables(req.params.houseid, (err, rows) => {
+router.get('/variables', (req, res) => {
+    tables.House.getHouseVariables(req.query.houseid, (err, rows) => {
         if(err)throw err;
         console.log(rows);
         res.json(rows);
     });
 });
 
-router.get('/:houseid/RT', (req, res) => {
-    console.log(req.params.houseid);
-    tables.House.getHouseRT(req.params.houseid, (rows) => {
+router.get('//RT', (req, res) => {
+    console.log(req.query.houseid);
+    tables.House.getHouseRT(req.query.houseid, (rows) => {
         console.log(rows);
         res.json(rows[0]);
     });
 });
 
-router.get('/:houseid/rthist', (req, res) => {
-    console.log(req.params.houseid);
-    tables.House.getHouseRT(req.params.houseid, (rows) => {
+router.get('/rthist', (req, res) => {
+    console.log(req.query.houseid);
+    tables.House.getHouseRT(req.query.houseid, (rows) => {
         console.log(rows);
         res.json(rows);
     });
