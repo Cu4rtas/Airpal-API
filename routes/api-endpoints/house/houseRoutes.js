@@ -33,9 +33,9 @@ router.get('/:houseid/RT', (req, res) => {
     });
 });
 
-router.get('/rthist', (req, res) => {
-    console.log(req.query.houseid);
-    tables.House.getHouseRT(req.query.houseid, (rows) => {
+router.get('/:houseid/rthist', (req, res) => {
+    console.log(req.params.houseid);
+    tables.House.getHouseRT(req.params.houseid, (rows) => {
         console.log(rows);
         res.json(rows);
     });
