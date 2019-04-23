@@ -41,6 +41,7 @@ router.get('/rthist', (req, res) => {
     });
 });
 
+
 router.post("/register", (req, res) => {
     let houseInsert = {},
          installationInsert = {};
