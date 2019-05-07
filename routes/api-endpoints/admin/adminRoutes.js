@@ -44,7 +44,7 @@ router.post('/register', function(req, res, next){
 router.get('/installations', (req, res) => {
     tables.Admin.getAdminInstallations(req.query.adminid, (err, rows) => {
        if(err) throw err;
-        res.send(rows);
+       res.send(rows);
     });
 });
 
